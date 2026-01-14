@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShipmentTracker.Api", "ShipmentTracker.Api\ShipmentTracker.Api.csproj", "{F76D496D-0A79-4715-9B9F-9F7042CE6A5E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShipmentTracker.Domain", "ShipmentTracker.Domain\ShipmentTracker.Domain.csproj", "{8252067D-F2C2-49DA-A1F1-56D84E60B242}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShipmentTracker.Infrastructure", "ShipmentTracker.Infrastructure\ShipmentTracker.Infrastructure.csproj", "{A7376460-09C0-4814-9927-B7A9F7181B21}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F76D496D-0A79-4715-9B9F-9F7042CE6A5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F76D496D-0A79-4715-9B9F-9F7042CE6A5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F76D496D-0A79-4715-9B9F-9F7042CE6A5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F76D496D-0A79-4715-9B9F-9F7042CE6A5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8252067D-F2C2-49DA-A1F1-56D84E60B242}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8252067D-F2C2-49DA-A1F1-56D84E60B242}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8252067D-F2C2-49DA-A1F1-56D84E60B242}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8252067D-F2C2-49DA-A1F1-56D84E60B242}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7376460-09C0-4814-9927-B7A9F7181B21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7376460-09C0-4814-9927-B7A9F7181B21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7376460-09C0-4814-9927-B7A9F7181B21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7376460-09C0-4814-9927-B7A9F7181B21}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
