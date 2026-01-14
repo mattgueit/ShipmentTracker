@@ -22,4 +22,8 @@
       <ProjectReference Include="..\ShipmentTracker.Domain\ShipmentTracker.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Authentication\" />
+    </ItemGroup>
+
 </Project>
