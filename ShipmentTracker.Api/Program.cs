@@ -1,7 +1,6 @@
 
 using Microsoft.EntityFrameworkCore;
 using ShipmentTracker.Infrastructure;
-using ShipmentTracker.Service;
 
 namespace ShipmentTracker;
 
@@ -12,9 +11,7 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
-        builder.Services
-            .AddInfrastructure(builder.Configuration, builder.Environment)
-            .AddService();
+        builder.Services.AddInfrastructure(builder.Configuration, builder.Environment);
 
         builder.Services.AddControllers();
         builder.Services.AddOpenApi();

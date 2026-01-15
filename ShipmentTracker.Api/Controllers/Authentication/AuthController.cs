@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ShipmentTracker.Domain.Authentication;
 
-namespace ShipmentTracker.Controllers;
+namespace ShipmentTracker.Controllers.Authentication;
 
 public record RegisterRequest(string Username, string Password);
 

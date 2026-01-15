@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
 using ShipmentTracker.Domain.Authentication;
 
-namespace ShipmentTracker.Service.Authentication;
+namespace ShipmentTracker.Infrastructure.Services.Authentication;
 
 public class AuthenticationService(UserManager<ApplicationUser> userManager, IJwtGenerator jwtGenerator) : IAuthenticationService
 {

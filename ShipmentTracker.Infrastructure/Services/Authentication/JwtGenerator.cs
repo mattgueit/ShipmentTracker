@@ -6,7 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using ShipmentTracker.Domain.Authentication;
 using JwtRegisteredClaimNames = System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames;
 
-namespace ShipmentTracker.Service.Authentication;
+namespace ShipmentTracker.Infrastructure.Services.Authentication;
 
 // Would be better to use the options pattern.
 public class JwtGenerator(IConfiguration configuration) : IJwtGenerator
