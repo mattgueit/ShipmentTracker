@@ -4,6 +4,7 @@ using ShipmentTracker.Domain.Authentication;
 namespace ShipmentTracker.Controllers.Authentication;
 
 public record RegisterRequest(string Username, string Password);
+public record LoginRequest(string Username, string Password);
 
 [ApiController]
 [Route("[controller]")]
@@ -20,11 +21,30 @@ public class AuthController(IAuthenticationService authenticationService) : Cont
                 return Ok(new { jwt = result.Jwt });
             }
 
-            return BadRequest(new { error = result.ErrorMessage });
+            return BadRequest(new { error = $"Error found while registering: { result.ErrorMessage }" });
         }
         catch (Exception ex)
         {
             // Bad, should at least scrub the message. For now, it's ok.
+            return StatusCode(500, ex.Message);
+        }
+    }
+
+    [HttpPost("login", Name = "Login")]
+    public async Task<IActionResult> Login([FromBody] LoginRequest request)
+    {
+        try
+        {
+            var result = await authenticationService.Login(request.Username, request.Password);
+            if (result.Success)
+            {
+                return Ok(new { jwt = result.Jwt });
+            }
+
+            return BadRequest(new { error = $"Error found while loggin in: { result.ErrorMessage }" });
+        }
+        catch (Exception ex)
+        {
             return StatusCode(500, ex.Message);
         }
     }
