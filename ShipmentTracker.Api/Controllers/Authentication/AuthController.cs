@@ -26,7 +26,7 @@ public class AuthController(IAuthenticationService authenticationService) : Cont
         catch (Exception ex)
         {
             // Bad, should at least scrub the message. For now, it's ok.
-            return StatusCode(500, ex.Message);
+            return StatusCode(500, new { error =  ex.Message });
         }
     }
 
@@ -41,7 +41,7 @@ public class AuthController(IAuthenticationService authenticationService) : Cont
                 return Ok(new { jwt = result.Jwt });
             }
 
-            return BadRequest(new { error = $"Error found while loggin in: { result.ErrorMessage }" });
+            return BadRequest(new { error = $"Error found while logging in: { result.ErrorMessage }" });
         }
         catch (Exception ex)
         {
