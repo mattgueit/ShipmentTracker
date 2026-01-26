@@ -2,6 +2,6 @@
 
 public interface IAuthenticationService
 {
-    Task<RegisterResult> Register(string email, string password);
-    Task<LoginResult> Login(string email, string password);
+    Task<string> Register(string email, string password);
+    Task<string> Login(string email, string password);
 }
