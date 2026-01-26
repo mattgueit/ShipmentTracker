@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
 using ShipmentTracker.Api.Exceptions;
+using ShipmentTracker.Application;
 using ShipmentTracker.Infrastructure;
 
 namespace ShipmentTracker.Api;
@@ -14,6 +15,7 @@ public class Program
 
         // Add services to the container.
         builder.Services.AddInfrastructure(builder.Configuration, builder.Environment);
+        builder.Services.AddApplication();
 
         builder.Services.AddControllers();
         builder.Services.AddOpenApi();

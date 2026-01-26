@@ -3,7 +3,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ShipmentTracker.Domain.Authentication;
-using ShipmentTracker.Infrastructure.Services.Authentication;
 
 namespace ShipmentTracker.Infrastructure;
 
@@ -15,9 +14,6 @@ public static class DependencyInjection
         IHostEnvironment environment
     )
     {
-        services.AddScoped<IAuthenticationService, AuthenticationService>();
-        services.AddSingleton<IJwtGenerator, JwtGenerator>();
-        
         services.AddDbContext<AppDbContext>(options =>
         {
             options.UseNpgsql(

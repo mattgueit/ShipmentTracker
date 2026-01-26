@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShipmentTracker.Domain", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShipmentTracker.Infrastructure", "ShipmentTracker.Infrastructure\ShipmentTracker.Infrastructure.csproj", "{A7376460-09C0-4814-9927-B7A9F7181B21}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShipmentTracker.Application", "ShipmentTracker.Application\ShipmentTracker.Application.csproj", "{1D264A00-FD33-4B5F-9D05-FE1DC37E4928}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{A7376460-09C0-4814-9927-B7A9F7181B21}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7376460-09C0-4814-9927-B7A9F7181B21}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7376460-09C0-4814-9927-B7A9F7181B21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D264A00-FD33-4B5F-9D05-FE1DC37E4928}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D264A00-FD33-4B5F-9D05-FE1DC37E4928}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D264A00-FD33-4B5F-9D05-FE1DC37E4928}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D264A00-FD33-4B5F-9D05-FE1DC37E4928}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
