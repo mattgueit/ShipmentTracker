@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using ShipmentTracker.Application.Authentication;
+using ShipmentTracker.Application.Services.Authentication;
 using ShipmentTracker.Domain.Authentication;
 
 namespace ShipmentTracker.Application;

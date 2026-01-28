@@ -1,4 +1,4 @@
-﻿namespace ShipmentTracker.Application.Authentication;
+﻿namespace ShipmentTracker.Application.Services.Authentication;
 
 public static class CredentialsValidator
 {

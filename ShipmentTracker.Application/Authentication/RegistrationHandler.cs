@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using ShipmentTracker.Application.Services.Authentication;
 using ShipmentTracker.Domain.Authentication;
 using ShipmentTracker.Domain.Exceptions;
 

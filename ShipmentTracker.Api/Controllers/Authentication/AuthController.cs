@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using ShipmentTracker.Application.Authentication;
-using ShipmentTracker.Domain.Authentication;
 
 namespace ShipmentTracker.Api.Controllers.Authentication;
 
@@ -14,16 +13,16 @@ public class AuthController : ControllerBase
     [HttpPost("register", Name = "Register")]
     public async Task<IResult> Register([FromBody] RegisterRequest request, RegistrationHandler registrationHandler)
     {
-        var jwt = await registrationHandler.Handle(request.Username, request.Password); 
+        var accessToken = await registrationHandler.Handle(request.Username, request.Password); 
         
-        return Results.Ok(new { jwt });
+        return Results.Ok(new { accessToken });
     }
 
     [HttpPost("login", Name = "Login")]
     public async Task<IResult> Login([FromBody] LoginRequest request, LoginHandler loginHandler)
     {
-        var jwt = await loginHandler.Handle(request.Username, request.Password);
+        var accessToken = await loginHandler.Handle(request.Username, request.Password);
 
-        return Results.Ok(new { jwt });
+        return Results.Ok(new { accessToken });
     }
 }
