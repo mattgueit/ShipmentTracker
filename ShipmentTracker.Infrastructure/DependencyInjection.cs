@@ -2,7 +2,10 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ShipmentTracker.Application.Authentication.Common;
+using ShipmentTracker.Application.Services.Authentication;
 using ShipmentTracker.Domain.Authentication;
+using ShipmentTracker.Infrastructure.Authentication;
 
 namespace ShipmentTracker.Infrastructure;
 
@@ -14,6 +17,9 @@ public static class DependencyInjection
         IHostEnvironment environment
     )
     {
+        services.AddSingleton<ITokenService, JwtTokenService>();
+        services.AddScoped<IUserAuthenticationService, UserAuthenticationService>();
+        
         services.AddDbContext<AppDbContext>(options =>
         {
             options.UseNpgsql(

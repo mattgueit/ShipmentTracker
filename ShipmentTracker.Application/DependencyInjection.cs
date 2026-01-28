@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using ShipmentTracker.Application.Authentication;
-using ShipmentTracker.Application.Services.Authentication;
-using ShipmentTracker.Domain.Authentication;
+using ShipmentTracker.Application.Authentication.LoginUser;
+using ShipmentTracker.Application.Authentication.RegisterUser;
 
 namespace ShipmentTracker.Application;
 
@@ -11,10 +10,8 @@ public static class DependencyInjection
         this IServiceCollection services
     )
     {
-        services.AddSingleton<IJwtGenerator, JwtGenerator>();
-        
-        services.AddScoped<LoginHandler>();
-        services.AddScoped<RegistrationHandler>();
+        services.AddScoped<LoginUserHandler>();
+        services.AddScoped<RegisterUserHandler>();
         
         return services;
     }

@@ -1,27 +1,25 @@
 using Microsoft.AspNetCore.Mvc;
-using ShipmentTracker.Application.Authentication;
+using ShipmentTracker.Application.Authentication.LoginUser;
+using ShipmentTracker.Application.Authentication.RegisterUser;
 
 namespace ShipmentTracker.Api.Controllers.Authentication;
-
-public record RegisterRequest(string Username, string Password);
-public record LoginRequest(string Username, string Password);
 
 [ApiController]
 [Route("[controller]")]
 public class AuthController : ControllerBase
 {
     [HttpPost("register", Name = "Register")]
-    public async Task<IResult> Register([FromBody] RegisterRequest request, RegistrationHandler registrationHandler)
+    public async Task<IResult> Register([FromBody] RegisterUserCommand request, RegisterUserHandler registerUserHandler)
     {
-        var accessToken = await registrationHandler.Handle(request.Username, request.Password); 
+        var accessToken = await registerUserHandler.Handle(request); 
         
         return Results.Ok(new { accessToken });
     }
 
     [HttpPost("login", Name = "Login")]
-    public async Task<IResult> Login([FromBody] LoginRequest request, LoginHandler loginHandler)
+    public async Task<IResult> Login([FromBody] LoginUserCommand request, LoginUserHandler loginUserHandler)
     {
-        var accessToken = await loginHandler.Handle(request.Username, request.Password);
+        var accessToken = await loginUserHandler.Handle(request);
 
         return Results.Ok(new { accessToken });
     }

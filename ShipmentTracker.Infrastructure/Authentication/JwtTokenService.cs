@@ -3,15 +3,15 @@ using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
+using ShipmentTracker.Application.Authentication.Common;
 using ShipmentTracker.Domain.Authentication;
-using JwtRegisteredClaimNames = System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames;
 
-namespace ShipmentTracker.Application.Services.Authentication;
+namespace ShipmentTracker.Infrastructure.Authentication;
 
 // Would be better to use the options pattern.
-public class JwtGenerator(IConfiguration configuration) : IJwtGenerator
+public class JwtTokenService(IConfiguration configuration) : ITokenService
 {
-    public string GenerateJwt(ApplicationUser user)
+    public string GenerateJwt(User user)
     {
         var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:SecretKey"]!));
         var credentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256);
