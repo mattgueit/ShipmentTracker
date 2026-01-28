@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Diagnostics;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
 using ShipmentTracker.Domain.Exceptions;
+using ValidationException = ShipmentTracker.Application.Exceptions.ValidationException;
 
 namespace ShipmentTracker.Api.Exceptions;
 
@@ -19,14 +21,19 @@ public class ProblemExceptionHandler(IProblemDetailsService problemDetailsServic
         }
         
         var statusCode = MapToStatusCode(problemException);
-
-        var problemDetails = new ProblemDetails
+        
+        var problemDetails = new HttpValidationProblemDetails
         {
             Type = ReasonPhrases.GetReasonPhrase(statusCode),
             Status = statusCode,
             Title = problemException.Error,
-            Detail = problemException.Message
+            Detail = problemException.Message,
         };
+
+        if (exception is ValidationException validationException)
+        {
+            problemDetails.Errors = validationException.Errors;
+        }
 
         httpContext.Response.StatusCode = statusCode;
         
@@ -40,7 +47,7 @@ public class ProblemExceptionHandler(IProblemDetailsService problemDetailsServic
     private static int MapToStatusCode(Exception exception) => exception switch
     {
         AuthenticationException => StatusCodes.Status401Unauthorized,
-        ProblemException => StatusCodes.Status400BadRequest,
+        ValidationException or ProblemException => StatusCodes.Status400BadRequest, 
         _ => StatusCodes.Status500InternalServerError
     };
 

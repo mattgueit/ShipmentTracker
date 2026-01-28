@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FluentValidation;
+using Microsoft.Extensions.DependencyInjection;
 using ShipmentTracker.Application.Authentication.LoginUser;
 using ShipmentTracker.Application.Authentication.RegisterUser;
 
@@ -10,6 +11,8 @@ public static class DependencyInjection
         this IServiceCollection services
     )
     {
+        services.AddValidatorsFromAssembly(typeof(DependencyInjection).Assembly);
+        
         services.AddScoped<LoginUserHandler>();
         services.AddScoped<RegisterUserHandler>();
         

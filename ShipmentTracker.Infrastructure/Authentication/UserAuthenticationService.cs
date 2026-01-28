@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using ShipmentTracker.Application.Authentication.Common;
-using ShipmentTracker.Application.Services.Authentication;
 using ShipmentTracker.Domain.Authentication;
 
 namespace ShipmentTracker.Infrastructure.Authentication;

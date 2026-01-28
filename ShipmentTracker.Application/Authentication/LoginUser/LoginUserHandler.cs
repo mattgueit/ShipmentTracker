@@ -1,18 +1,20 @@
-﻿using ShipmentTracker.Application.Authentication.Common;
-using ShipmentTracker.Application.Services.Authentication;
+﻿using FluentValidation;
+using ShipmentTracker.Application.Authentication.Common;
+using ShipmentTracker.Application.Extensions;
 using ShipmentTracker.Domain.Exceptions;
 
 namespace ShipmentTracker.Application.Authentication.LoginUser;
 
-public class LoginUserHandler(IUserAuthenticationService userAuthenticationService, ITokenService tokenService)
+public class LoginUserHandler(
+    IValidator<LoginUserCommand> validator,
+    IUserAuthenticationService userAuthenticationService,
+    ITokenService tokenService
+)
 {
     public async Task<string> Handle(LoginUserCommand command)
     {
-        if (!CredentialsValidator.IsUsernameAndPasswordValid(command.Email, command.Password))
-        {
-            throw new ProblemException("Login Failed", "Email and password are required");
-        }
-
+        validator.ValidateAndThrowValidationException(command);
+        
         var user = await userAuthenticationService.AuthenticateAsync(command.Email, command.Password); 
 
         if (user == null)

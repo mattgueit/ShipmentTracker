@@ -3,7 +3,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ShipmentTracker.Application.Authentication.Common;
-using ShipmentTracker.Application.Services.Authentication;
 using ShipmentTracker.Domain.Authentication;
 using ShipmentTracker.Infrastructure.Authentication;
 
