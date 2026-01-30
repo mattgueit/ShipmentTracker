@@ -2,18 +2,20 @@
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Scalar.AspNetCore;
 using ShipmentTracker.Api.Exceptions;
 using ShipmentTracker.Application;
+using ShipmentTracker.Domain.Authentication;
 using ShipmentTracker.Infrastructure;
 
 namespace ShipmentTracker.Api;
 
 public class Program
 {
-    public static void Main(string[] args)
+    public static async Task Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
 
@@ -65,8 +67,9 @@ public class Program
         // For now this is fine without a CD pipeline.
         using (var scope = app.Services.CreateScope())
         {
-            var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-            db.Database.Migrate();
+            var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+            await dbContext.Database.MigrateAsync();
+            await EnsureRolesExist(scope);
         }
 
         // Configure the HTTP request pipeline. Order matters here.
@@ -86,5 +89,18 @@ public class Program
         app.MapControllers();
 
         app.Run();
+    }
+
+    private static async Task EnsureRolesExist(IServiceScope scope)
+    {
+        var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+        if (!await roleManager.RoleExistsAsync(Roles.Admin))
+        {
+            await roleManager.CreateAsync(new IdentityRole(Roles.Admin));
+        }
+        if (!await roleManager.RoleExistsAsync(Roles.Member))
+        {
+            await roleManager.CreateAsync(new IdentityRole(Roles.Member));
+        }
     }
 }

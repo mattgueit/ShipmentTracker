@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -47,6 +48,7 @@ public static class DependencyInjection
                 options.Password.RequireDigit = false;
                 options.Password.RequireUppercase = false;
             })
+            .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<AppDbContext>();
 
         return services;
