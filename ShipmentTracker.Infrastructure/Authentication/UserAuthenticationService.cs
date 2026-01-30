@@ -14,10 +14,13 @@ public class UserAuthenticationService(UserManager<ApplicationUser> userManager)
 
         if (await userManager.CheckPasswordAsync(user, password))
         {
+            var isAdmin = await userManager.IsInRoleAsync(user, Roles.Admin);
+            
             return new User
             {
                 Id = user.Id,
-                Email = user.Email
+                Email = user.Email,
+                IsAdmin = isAdmin
             };
         }
 
@@ -34,13 +37,24 @@ public class UserAuthenticationService(UserManager<ApplicationUser> userManager)
     public async Task<User?> FindUserByEmailAsync(string email)
     {
         var user = await userManager.FindByNameAsync(email);
-
+        
         if (user == null) return null;
+        
+        var isAdmin = await userManager.IsInRoleAsync(user, Roles.Admin);
 
         return new User
         {
             Id = user.Id,
-            Email = user.Email
+            Email = user.Email,
+            IsAdmin = isAdmin
         };
+    }
+
+    public async Task<AddUserToRoleResult> AddUserToRoleAsync(string email, string role)
+    {
+        var user = await userManager.FindByNameAsync(email);
+        var identityResult = await userManager.AddToRoleAsync(user!, role);
+        
+        return new AddUserToRoleResult(identityResult.Succeeded, identityResult.Errors.Select(x => x.Description).ToList());
     }
 }

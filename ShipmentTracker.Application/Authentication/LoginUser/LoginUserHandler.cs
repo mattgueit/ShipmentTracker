@@ -15,7 +15,7 @@ public class LoginUserHandler(
     {
         validator.ValidateAndThrowValidationException(command);
         
-        var user = await userAuthenticationService.AuthenticateAsync(command.Email, command.Password); 
+        var user = await userAuthenticationService.AuthenticateAsync(command.Email, command.Password);
 
         if (user == null)
         {

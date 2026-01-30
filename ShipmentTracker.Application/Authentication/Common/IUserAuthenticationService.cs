@@ -7,4 +7,5 @@ public interface IUserAuthenticationService
     Task<User?> AuthenticateAsync(string email, string password);
     Task<CreateUserResult> CreateUserAsync(string email, string password);
     Task<User?> FindUserByEmailAsync(string email);
+    Task<AddUserToRoleResult> AddUserToRoleAsync(string email, string role);
 }

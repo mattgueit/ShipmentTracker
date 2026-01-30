@@ -18,6 +18,7 @@ public static class DependencyInjection
     )
     {
         services.AddSingleton<ITokenService, JwtTokenService>();
+        services.AddScoped<IRoleService, RoleService>();
         services.AddScoped<IUserAuthenticationService, UserAuthenticationService>();
         
         services.AddDbContext<AppDbContext>(options =>

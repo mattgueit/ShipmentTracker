@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using ShipmentTracker.Domain.Authentication;
 using ShipmentTracker.Domain.Shipments;
+using ShipmentTracker.Infrastructure.Authentication;
 
 namespace ShipmentTracker.Infrastructure;
 

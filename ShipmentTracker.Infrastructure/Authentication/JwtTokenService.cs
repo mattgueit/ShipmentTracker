@@ -19,7 +19,8 @@ public class JwtTokenService(IConfiguration configuration) : ITokenService
         List<Claim> claims =
         [
             new(JwtRegisteredClaimNames.Sub, user.Id),
-            new(JwtRegisteredClaimNames.Email, user.Email ?? "")
+            new(JwtRegisteredClaimNames.Email, user.Email ?? ""),
+            new("IsAdmin", user.IsAdmin.ToString())
         ];
         
         var tokenDescriptor = new SecurityTokenDescriptor()
